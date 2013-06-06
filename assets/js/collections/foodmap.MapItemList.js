@@ -1,13 +1,13 @@
 
 var foodmap = foodmap || {};
 
-var MapItemList = Backbone.Collections.extend({
+foodmap.MapItemList = Backbone.Collection.extend({
 
     model: foodmap.MapItem,
 
     url: "/assets/resources/eateries2.json",
 
-    // demo funcs
+    // Filter by price
     list_cost_low: function() {
         return this.filter(function(mapItem){
             return mapItem.get("price") === "low";
@@ -22,8 +22,11 @@ var MapItemList = Backbone.Collections.extend({
         return this.filter(function(mapItem){
             return mapItem.get("price") === "high";
         });
+    },
+
+    // Sort by original insertion order
+    comparator: function( mapItem ) {
+        return mapItem.get("order");
     }
 
 });
-
-foodmap.list = new MapItemList();
