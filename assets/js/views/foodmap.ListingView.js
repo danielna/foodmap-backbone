@@ -21,6 +21,7 @@ foodmap.ListingView = Backbone.View.extend({
     // reset
     // load all listings
     render: function() {
+        // console.log("model:", this.model.toJSON());
         this.$el.html( this.template( this.model.toJSON() ));
         return this;
     }
