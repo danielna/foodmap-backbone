@@ -5,7 +5,6 @@ foodmap.ListingView = Backbone.View.extend({
 
     tagName: 'div',
     className: "listing",
-    // !! remember to append data-id after render
 
     template: _.template( $("#template-listing").html() ),
     
@@ -21,9 +20,9 @@ foodmap.ListingView = Backbone.View.extend({
     // reset
     // load all listings
     render: function() {
-        // console.log("model:", this.model.toJSON());
         this.model.attributes.price_map = foodmap._globals.price_map[this.model.get("price")];
         this.$el.html( this.template( this.model.toJSON() ));
+        this.$el.attr("data-id", this.model.get("name"));
         return this;
     }
 

@@ -30,6 +30,7 @@ foodmap.MapItemList = Backbone.Collection.extend({
 
     tags: function() {
         var tags = [];
+
         this.each(function(model){
             var temp_tags = model.get("tags").split(",");
             _.each(temp_tags, function(tag){
