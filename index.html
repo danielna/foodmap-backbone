@@ -7,7 +7,7 @@
     <title>Notable NOVA Eateries</title>
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/map.css">
-    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:900italic' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:900italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
      <script type="text/template" id="template-listing">
         <div class="metadata">
             <div class="title"><%= name %></div>
-            <div class="price" data-price="<%= price %>"><%= price %></div>
+            <div class="price" data-price="<%= price %>"><%= price_map %></div>
         </div>
         <% if (tags.indexOf("BestOf") > -1) { %>
             <img class="best-of" src="assets/img/star.png"/>

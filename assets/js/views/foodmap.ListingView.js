@@ -22,6 +22,7 @@ foodmap.ListingView = Backbone.View.extend({
     // load all listings
     render: function() {
         // console.log("model:", this.model.toJSON());
+        this.model.attributes.price_map = foodmap._globals.price_map[this.model.get("price")];
         this.$el.html( this.template( this.model.toJSON() ));
         return this;
     }
