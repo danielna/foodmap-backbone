@@ -92,7 +92,9 @@
 
     <!-- TAG -->
     <script type="text/template" id="template-tag">
-        <button class='button tag' title='<%= tag %>' data-id='<%= tag %>'><%= tag %></button>
+        <% for(var i=0; i<tags.length; i++){ %>
+        <button class='button tag' title='<%= tags[i] %>' data-id='<%= tags[i] %>'><%= tags[i] %></button>
+        <% } %>
     </script>
 
     <!-- *** end templates *** -->
@@ -112,6 +114,8 @@
     <script type="text/javascript" src="assets/js/collections/foodmap.MapItemList.js"></script>
     <script type="text/javascript" src="assets/js/views/foodmap.ListingContainerView.js"></script>
     <script type="text/javascript" src="assets/js/views/foodmap.ListingView.js"></script>
+    <script type="text/javascript" src="assets/js/views/foodmap.TagsView.js"></script>
+    <script type="text/javascript" src="assets/js/views/foodmap.Main.js"></script>
     <script type="text/javascript" src="assets/js/foodmap.init.js"></script>
 
     <!--
