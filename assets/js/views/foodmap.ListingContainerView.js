@@ -16,7 +16,6 @@ foodmap.ListingContainerView = Backbone.View.extend({
         this.collection.each( function(listing) {
             this.renderListing(listing);
         }, this);
-
     },
 
     renderListing: function(listing) {
