@@ -13,7 +13,7 @@ foodmap.Main = Backbone.View.extend({
     },
     
     initialize: function() {
-        this.$container_welcome = this.$("#container-welcome");
+        this.$container_welcome = foodmap._globals.container_welcome;
         this.$tags = this.$(".tags .tag");
 
         foodmap.MapList = new foodmap.MapItemList();

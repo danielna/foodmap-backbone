@@ -13,5 +13,6 @@ foodmap._globals = {
                     "med"   :   "Moderately Priced",
                     "high"  :   "Expensive"
                 },
-    initial_zoom: 10
+    initial_zoom: 10,
+    container_welcome: $("#container-welcome")
 };
