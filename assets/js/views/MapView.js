@@ -84,6 +84,20 @@ foodmap.MapView = Backbone.View.extend({
         });
 
         this.infoBox.open(this.map, marker);
-    }
+    },
+
+    resetZoom: function() {
+        if (this.infoBox) {
+            this.infoBox.close();
+        }
+        this.zoomedOnce = false;
+        this.map.fitBounds(this.markerBounds);
+    },
+
+    setMarkersVisible: function() {
+        _.each(this.markers, function(marker){
+            marker.setVisible(true);
+        });
+    }   
 
 });

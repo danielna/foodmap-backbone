@@ -39,6 +39,10 @@ foodmap.Main = Backbone.View.extend({
     onReset: function() {
         this.$container_welcome.fadeIn();
         this.resetActiveTag();
+        this.map.resetZoom();
+        this.map.setMarkersVisible();
+        this.listingContainerView.showDefaultListings();
+
     },
 
     toggleLeftMenu: function(event) {
