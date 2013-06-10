@@ -3,7 +3,7 @@ var foodmap = foodmap || {};
 
 foodmap.TagsView = Backbone.View.extend({
     
-    el: ".tags",
+    el: "#left-container",
 
     template: _.template( $("#template-tag").html() ),
 
@@ -12,8 +12,8 @@ foodmap.TagsView = Backbone.View.extend({
     },
 
     render: function() {
-        // TODO: Add ethnicities as tags as well
-        this.$el.html( this.template({ tags: this.collection.tags() }) );
+        this.$("#container-tags").html( this.template({ tags: this.collection.tags() }) );
+        this.$("#container-ethnicities").html( this.template({ tags: this.collection.ethnicities() }) );
     }
 
 

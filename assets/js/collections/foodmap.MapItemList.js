@@ -28,20 +28,29 @@ foodmap.MapItemList = Backbone.Collection.extend({
         });
     },
 
+    // Return unique tags for the collection as an array
     tags: function() {
-        var tags = [];
+        return _.uniq(this.pluckCollectionProperty("tags"));
+    },
 
-        this.each(function(model){
-            var temp_tags = model.get("tags").split(",");
-            _.each(temp_tags, function(tag){
-                if (tag !== "") {
-                    tags.push(tag.trim());
+    // Return unique ethnicities for the collection as an array
+    ethnicities: function() {
+        return _.uniq(this.pluckCollectionProperty("ethnicity"));
+    },
+
+    // Pluck a collection property, returning an array of properties that do not include empty strings
+    pluckCollectionProperty: function(property) {
+        var properties = [];
+         _(this.pluck(property)).each(function(tag) {
+            var temp = tag.split(",");
+            for ( var i=0; i < temp.length; i++ ){
+                if ( temp[i] !== "" ) {
+                    properties.push(temp[i].trim());
                 }
-            });
+            }
         });
 
-        return _.uniq(tags);
-
+        return properties;
     },
 
     // Sort by original insertion order

@@ -13,9 +13,16 @@
 
     <article id="left-container">
         <h2>Filter by Tag</h2>
-        <section class="tags">
+        <ul id="container-tags" class="tags">
             <!-- #template-tag -->
-        </section>
+        </ul>
+
+        <h2>Filter by Ethnicity</h2>
+        <ul id="container-ethnicities" class="tags">
+            <!-- #template-tag -->
+        </ul>
+
+
     </article>
 
     <article id="top-bar">
@@ -93,7 +100,7 @@
     <!-- TAG -->
     <script type="text/template" id="template-tag">
         <% for(var i=0; i<tags.length; i++){ %>
-        <button class='button tag' title='<%= tags[i] %>' data-id='<%= tags[i] %>'><%= tags[i] %></button>
+        <li class='button tag' title='<%= tags[i] %>' data-id='<%= tags[i] %>'><%= tags[i] %></li>
         <% } %>
     </script>
 
