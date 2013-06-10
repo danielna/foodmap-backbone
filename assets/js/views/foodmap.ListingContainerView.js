@@ -7,9 +7,7 @@ foodmap.ListingContainerView = Backbone.View.extend({
 
     initialize: function() {
         this.collection.bind("reset", _.bind(this.render, this));
-
-        var pixel_width = foodmap._globals.listing_width * this.collection.length;
-        $("#bottom-container").find(".listing-container").attr("style", "width:" + pixel_width + "px;");        
+        this.collection.bind("reset", _.bind(this.setListingContainerWidth, this));  
     },
 
     render: function() {
@@ -24,6 +22,11 @@ foodmap.ListingContainerView = Backbone.View.extend({
         });
 
         this.$el.append( listingView.render().el );    
+    },
+
+    setListingContainerWidth: function() {
+        var pixel_width = foodmap._globals.listing_width * this.collection.length;
+        $("#bottom-container").find(".listing-container").attr("style", "width:" + pixel_width + "px;");        
     }
 
 });
