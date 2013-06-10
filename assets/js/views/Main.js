@@ -42,7 +42,7 @@ foodmap.Main = Backbone.View.extend({
         this.resetActiveTag();
         this.map.resetZoom();
         this.map.setMarkersVisible();
-        this.listingContainerView.showDefaultListings();
+        this.listingContainerView.resetListings();
 
     },
 

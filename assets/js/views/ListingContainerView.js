@@ -61,8 +61,9 @@ foodmap.ListingContainerView = Backbone.View.extend({
         this.trigger("clickListing", id);
     },
 
-    showDefaultListings: function() {
+    resetListings: function() {
         this.$el.find(".listing").show().removeClass("active");
+        $("#bottom-container .listing-scroll").animate({scrollLeft: 0}, 1200);
     },
 
     filterListingsByArray: function(active_markers) {
