@@ -8,7 +8,7 @@ foodmap.MapItemList = Backbone.Collection.extend({
     url: "/assets/resources/eateries2.json",
 
     initialize: function() {
-        console.log("collection init");
+        // console.log("collection init");
     },
 
     // Filter by price

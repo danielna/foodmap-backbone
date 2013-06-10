@@ -24,6 +24,7 @@ foodmap.Main = Backbone.View.extend({
 
         this.listenTo(this.map, "clickMapMarker", this.clickMapMarker);
         this.listenTo(this.listingContainerView, "clickListing", this.clickListing);
+        this.listenTo(this.tagsView, "clickTag", this.clickTag);
 
         foodmap.MapList.fetch({reset: true});
     },
@@ -76,7 +77,11 @@ foodmap.Main = Backbone.View.extend({
         this.listingContainerView.setActiveListing(id);
         this.map.zoomToMarker(id);
         this.map.showInfoBox(id);
+    },
 
+    clickTag: function(id) {
+        var active_markers = this.map.filterMarkersByTag(id);
+        this.listingContainerView.filterListingsByArray(active_markers);
     }
 
 });

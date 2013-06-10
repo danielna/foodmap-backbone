@@ -19,6 +19,8 @@ foodmap.ListingContainerView = Backbone.View.extend({
         this.collection.each( function(listing) {
             this.renderListing(listing);
         }, this);
+
+        this.$listings = this.$el.find(".listing");
     },
 
     renderListing: function(listing) {
@@ -61,6 +63,17 @@ foodmap.ListingContainerView = Backbone.View.extend({
 
     showDefaultListings: function() {
         this.$el.find(".listing").show().removeClass("active");
+    },
+
+    filterListingsByArray: function(active_markers) {
+        var $listings = this.$listings;
+        
+        $listings.hide();
+        _.each(active_markers, function(id){
+            $listings.filter('[data-id="' + id + '"]').show();
+        });
+        
+        $listings.filter(":visible").first()[0].click();
     }
 
 });

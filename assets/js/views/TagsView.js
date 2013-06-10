@@ -25,8 +25,13 @@ foodmap.TagsView = Backbone.View.extend({
     },
 
     clickTag: function(event) {
+        var $this = $(event.currentTarget),
+            id = $this.attr("data-id").trim();
+
         this.$tags.removeClass("active");
-        $(event.currentTarget).addClass("active");
+        $this.addClass("active");
+        
+        this.trigger("clickTag", id);
     }
 
 });

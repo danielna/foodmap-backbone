@@ -98,6 +98,25 @@ foodmap.MapView = Backbone.View.extend({
         _.each(this.markers, function(marker){
             marker.setVisible(true);
         });
-    }   
+    },
+
+    filterMarkersByTag: function(id) {
+        var active_markers = [],
+            // filterMarkers are markers that contain the current tag (id)
+            filtered_markers = _.filter(this.markers, function(marker){
+                return ((marker.tags && marker.tags.indexOf(id) > -1) || marker.ethnicity.indexOf(id) > -1);
+            });
+
+        _.each(this.markers, function(marker){
+            if ($.inArray(marker, filtered_markers) > -1){
+                marker.setVisible(true);
+                active_markers.push(marker.title);
+            } else {
+               marker.setVisible(false);
+            }
+        });
+
+        return active_markers;       
+    }
 
 });
