@@ -19,6 +19,7 @@ foodmap.MapView = Backbone.View.extend({
         this.markers = {};
         this.markerBounds = new google.maps.LatLngBounds();
         this.map = new google.maps.Map(document.getElementById(dom_id), my_options);
+        this.infoBox = null;
         
         this.collection.bind("reset", _.bind(this.parseMarkers, this));
     },
@@ -44,21 +45,53 @@ foodmap.MapView = Backbone.View.extend({
             marker.tags = mapItem.get("tags");
 
             addGoogleClickListener(marker);
-            this.markers[mapItem.name] = marker;
+            this.markers[marker.title] = marker;
         }, this);
 
         function addGoogleClickListener(marker) {
             google.maps.event.addListener(marker, 'click', function() {
                 foodmap._globals.container_welcome.fadeOut();
 
-                _this.trigger("activateListing", marker.title);
+                _this.trigger("clickMapMarker", marker.title);
 
                 // marker_util.highlightListing(marker.title);
                 // marker_util.zoomMarker(marker.title);
                 // marker_util.showinfoBox(marker.title);
             });
         }
-    }
+    },
 
+    // Zoom to a specific marker, assuming the map hasn't been zoomed already.
+    zoomToMarker: function(id) {
+        console.log("this.markers[id]:", this.markers[id].getPosition());
+        if (!this.zoomedOnce) {
+            this.zoomedOnce = true;
+            this.map.setZoom(13);
+        }
+        this.map.setCenter(this.markers[id].getPosition());
+    },
+
+    showInfoBox: function(id){
+        var marker = this.markers[id],
+            price_map = foodmap._globals.price_map[marker.price],
+            content_tags = marker.tags ? ", " + marker.tags : "",
+            content = 
+                '<span class="title">' + marker.title + '</span>' + 
+                '<span class="price" data-price="' + marker.price + '">' + price_map + '</span>' + 
+                '<span class="tags">' + marker.ethnicity + content_tags + '</span>' + marker.description;
+
+        if (this.infoBox) {
+            this.infoBox.close();
+        }
+
+        this.infoBox = new InfoBox({
+            boxClass: "infobox-container",
+            content: content,
+            infoBoxClearance: new google.maps.Size(50,50),
+            pixelOffset: new google.maps.Size(-200,0)
+        });
+
+        this.infoBox.open(this.map, marker);
+    }
 
 });
