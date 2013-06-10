@@ -53,10 +53,6 @@ foodmap.MapView = Backbone.View.extend({
                 foodmap._globals.container_welcome.fadeOut();
 
                 _this.trigger("clickMapMarker", marker.title);
-
-                // marker_util.highlightListing(marker.title);
-                // marker_util.zoomMarker(marker.title);
-                // marker_util.showinfoBox(marker.title);
             });
         }
     },
@@ -66,9 +62,9 @@ foodmap.MapView = Backbone.View.extend({
         console.log("this.markers[id]:", this.markers[id].getPosition());
         if (!this.zoomedOnce) {
             this.zoomedOnce = true;
+            this.map.setCenter(this.markers[id].getPosition());
             this.map.setZoom(13);
         }
-        this.map.setCenter(this.markers[id].getPosition());
     },
 
     showInfoBox: function(id){
