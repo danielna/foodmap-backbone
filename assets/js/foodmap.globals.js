@@ -12,5 +12,6 @@ foodmap._globals = {
                     "low"   :   "Cheap Eats",
                     "med"   :   "Moderately Priced",
                     "high"  :   "Expensive"
-                }
+                },
+    initial_zoom: 10
 };

@@ -254,7 +254,7 @@ body.menu-left #top-bar {
 
 /* Map Container */
 /* line 238, ../sass/map.scss */
-#map-container {
+#container-map {
   top: 5%;
   left: 0%;
   height: 85%;
@@ -262,11 +262,11 @@ body.menu-left #top-bar {
   z-index: 50;
 }
 /* line 244, ../sass/map.scss */
-body.menu-left #map-container {
+body.menu-left #container-map {
   left: 15%;
 }
 /* line 247, ../sass/map.scss */
-#map-container .infobox-container {
+#container-map .infobox-container {
   display: block;
   font-size: 0.875em;
   line-height: 1.3em;
@@ -288,20 +288,20 @@ body.menu-left #map-container {
   overflow-y: auto;
 }
 /* line 259, ../sass/map.scss */
-#map-container .infobox-container > img {
+#container-map .infobox-container > img {
   position: absolute !important;
   top: 5px;
   right: 5px;
 }
 /* line 264, ../sass/map.scss */
-#map-container .infobox-container span.title {
+#container-map .infobox-container span.title {
   display: block;
   width: 100%;
   font-size: 1.3em;
   font-weight: bold;
 }
 /* line 271, ../sass/map.scss */
-#map-container .infobox-container .price {
+#container-map .infobox-container .price {
   display: inline-block;
   font-size: 0.8em;
   padding: 2px 5px;
@@ -313,26 +313,26 @@ body.menu-left #map-container {
   border-radius: 3px;
 }
 /* line 277, ../sass/map.scss */
-#map-container .infobox-container .price[data-price="low"] {
+#container-map .infobox-container .price[data-price="low"] {
   background-color: #89e63b;
 }
 /* line 280, ../sass/map.scss */
-#map-container .infobox-container .price[data-price="med"] {
+#container-map .infobox-container .price[data-price="med"] {
   background-color: #fbf658;
 }
 /* line 283, ../sass/map.scss */
-#map-container .infobox-container .price[data-price="high"] {
+#container-map .infobox-container .price[data-price="high"] {
   background-color: #dd7663;
 }
 /* line 287, ../sass/map.scss */
-#map-container .infobox-container .tags {
+#container-map .infobox-container .tags {
   display: inline-block;
   margin-left: 5px;
   font-size: 0.8em;
   font-style: italic;
 }
 /* line 293, ../sass/map.scss */
-#map-container .infobox-container h2 {
+#container-map .infobox-container h2 {
   font-size: 1em;
   font-weight: normal;
   line-height: 1.125em;
@@ -340,7 +340,7 @@ body.menu-left #map-container {
   padding: 0;
 }
 /* line 300, ../sass/map.scss */
-#map-container .infobox-container p:last-child {
+#container-map .infobox-container p:last-child {
   margin-bottom: 0px;
 }
 
