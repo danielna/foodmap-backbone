@@ -7,6 +7,9 @@ foodmap.ListingContainerView = Backbone.View.extend({
 
     initialize: function() {
         this.collection.bind("reset", _.bind(this.render, this));
+
+        var pixel_width = foodmap._globals.listing_width * this.collection.length;
+        $("#bottom-container").find(".listing-container").attr("style", "width:" + pixel_width + "px;");        
     },
 
     render: function() {
@@ -14,8 +17,6 @@ foodmap.ListingContainerView = Backbone.View.extend({
             this.renderListing(listing);
         }, this);
 
-        var pixel_width = foodmap._globals.listing_width * this.collection.length;
-        $("#bottom-container").find(".listing-container").attr("style", "width:" + pixel_width + "px;");
     },
 
     renderListing: function(listing) {
