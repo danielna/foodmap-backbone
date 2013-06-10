@@ -5,7 +5,7 @@ foodmap.MapItemList = Backbone.Collection.extend({
 
     model: foodmap.MapItem,
 
-    url: "/assets/resources/eateries2.json",
+    url: "/assets/resources/eateries.json",
 
     initialize: function() {
         // console.log("collection init");
