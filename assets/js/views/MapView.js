@@ -24,6 +24,7 @@ foodmap.MapView = Backbone.View.extend({
     },
 
     parseMarkers: function() {
+        var _this = this;
         this.collection.each(function(mapItem){
             var latLng = new google.maps.LatLng( parseFloat(mapItem.get("coordinates").lat, 10), parseFloat(mapItem.get("coordinates").lng, 10) );
             this.markerBounds.extend(latLng);
@@ -49,6 +50,8 @@ foodmap.MapView = Backbone.View.extend({
         function addGoogleClickListener(marker) {
             google.maps.event.addListener(marker, 'click', function() {
                 foodmap._globals.container_welcome.fadeOut();
+
+                _this.trigger("activateListing", marker.title);
 
                 // marker_util.highlightListing(marker.title);
                 // marker_util.zoomMarker(marker.title);

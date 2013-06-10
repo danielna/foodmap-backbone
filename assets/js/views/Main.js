@@ -15,14 +15,16 @@ foodmap.Main = Backbone.View.extend({
     initialize: function() {
         this.$container_welcome = foodmap._globals.container_welcome;
         this.$tags = this.$(".tags .tag");
+        this.$body = this.$el;
 
         foodmap.MapList = new foodmap.MapItemList();
-        var 
-            listingContainerView = new foodmap.ListingContainerView({ collection: foodmap.MapList }),
-            tagsView = new foodmap.TagsView({ collection: foodmap.MapList }),
-            map = new foodmap.MapView({ collection: foodmap.MapList });
+        this.listingContainerView = new foodmap.ListingContainerView({ collection: foodmap.MapList }),
+        this.tagsView = new foodmap.TagsView({ collection: foodmap.MapList }),
+        this.map = new foodmap.MapView({ collection: foodmap.MapList });
 
-        foodmap.MapList.fetch({reset: true});       
+        this.listenTo(this.map, "activateListing", this.setActiveListing);
+
+        foodmap.MapList.fetch({reset: true});
     },
 
     toggleWelcome: function() {
@@ -49,6 +51,14 @@ foodmap.Main = Backbone.View.extend({
         } else {
             $this.html("&laquo; Show");
         }
+    },
+
+    // 
+    setActiveListing: function(id){
+        if (!this.$body.hasClass("menu-on")) {
+            this.$body.addClass("menu-on");
+        }
+        this.listingContainerView.setActiveListing(id);
     }
 
 });
