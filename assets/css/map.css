@@ -471,7 +471,7 @@ body.menu-bottom #bottom-container {
 
 /* Welcome Message */
 /* line 386, ../sass/map.scss */
-#welcome-container {
+#container-welcome {
   z-index: 100;
   display: block;
   position: absolute;
@@ -485,16 +485,16 @@ body.menu-bottom #bottom-container {
   background-color: rgba(0, 0, 0, 0.8);
 }
 /* line 399, ../sass/map.scss */
-#welcome-container p:first-of-type {
+#container-welcome p:first-of-type {
   margin-top: 0px;
   padding-top: 0px;
 }
 /* line 403, ../sass/map.scss */
-#welcome-container p:last-child {
+#container-welcome p:last-child {
   margin-bottom: 0px;
 }
 /* line 407, ../sass/map.scss */
-#welcome-container #js-close-welcome {
+#container-welcome #js-close-welcome {
   position: absolute;
   display: inline-block;
   top: 0.4em;
