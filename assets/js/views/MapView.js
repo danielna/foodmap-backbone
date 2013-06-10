@@ -51,7 +51,6 @@ foodmap.MapView = Backbone.View.extend({
         function addGoogleClickListener(marker) {
             google.maps.event.addListener(marker, 'click', function() {
                 foodmap._globals.container_welcome.fadeOut();
-
                 _this.trigger("clickMapMarker", marker.title);
             });
         }

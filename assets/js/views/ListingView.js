@@ -7,15 +7,6 @@ foodmap.ListingView = Backbone.View.extend({
     className: "listing",
 
     template: _.template( $("#template-listing").html() ),
-    
-    events: {
-        ".listing click": "clickListing"
-    },
-
-    initialize: function() {
-        // this.listenTo(foodmap.list, "filter", this.loadFilter);
-        // this.listenTo(foodmap.list, "reset", this.loadAll);
-    },
 
     // reset
     // load all listings
@@ -25,6 +16,5 @@ foodmap.ListingView = Backbone.View.extend({
         this.$el.attr("data-id", this.model.get("name"));
         return this;
     }
-
 
 });
