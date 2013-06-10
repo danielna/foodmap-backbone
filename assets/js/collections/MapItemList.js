@@ -9,7 +9,6 @@ foodmap.MapItemList = Backbone.Collection.extend({
 
     initialize: function() {
         console.log("collection init");
-        this.markers = {};
     },
 
     // Filter by price
