@@ -36,13 +36,12 @@ foodmap.MapView = Backbone.View.extend({
                 animation: google.maps.Animation.DROP,
                 map: this.map,
                 icon: foodmap._globals.map_icons[mapItem.get("price")],
-                title: mapItem.get("name")
+                title: mapItem.get("name"),
+                description: mapItem.get("description"),
+                price: mapItem.get("price"),
+                ethnicity: mapItem.get("ethnicity"),
+                tags: mapItem.get("tags")
             });
-
-            marker.description = mapItem.get("description");
-            marker.price = mapItem.get("price");
-            marker.ethnicity = mapItem.get("ethnicity");
-            marker.tags = mapItem.get("tags");
 
             addGoogleClickListener(marker);
             this.markers[marker.title] = marker;
@@ -50,7 +49,6 @@ foodmap.MapView = Backbone.View.extend({
 
         function addGoogleClickListener(marker) {
             google.maps.event.addListener(marker, 'click', function() {
-                foodmap._globals.container_welcome.fadeOut();
                 _this.trigger("clickMapMarker", marker.title);
             });
         }
@@ -58,7 +56,6 @@ foodmap.MapView = Backbone.View.extend({
 
     // Zoom to a specific marker, assuming the map hasn't been zoomed already.
     zoomToMarker: function(id) {
-        console.log("this.markers[id]:", this.markers[id].getPosition());
         if (!this.zoomedOnce) {
             this.zoomedOnce = true;
             this.map.setCenter(this.markers[id].getPosition());

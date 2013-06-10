@@ -14,6 +14,7 @@ foodmap.ListingView = Backbone.View.extend({
         this.model.attributes.price_map = foodmap._globals.price_map[this.model.get("price")];
         this.$el.html( this.template( this.model.toJSON() ));
         this.$el.attr("data-id", this.model.get("name"));
+
         return this;
     }
 

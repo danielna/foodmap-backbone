@@ -23,6 +23,7 @@ foodmap.Main = Backbone.View.extend({
         this.map = new foodmap.MapView({ collection: foodmap.MapList });
 
         this.listenTo(this.map, "clickMapMarker", this.clickMapMarker);
+        this.listenTo(this.listingContainerView, "clickListing", this.clickListing);
 
         foodmap.MapList.fetch({reset: true});
     },
@@ -53,14 +54,25 @@ foodmap.Main = Backbone.View.extend({
         }
     },
 
-    // Delegate out behavior to views based on the click of a map marker
+    // Delegate behavior to views based on the click of a map marker
     clickMapMarker: function(id){
+        this.$container_welcome.fadeOut();
+
         if (!this.$body.hasClass("menu-on")) {
             this.$body.addClass("menu-on");
         }
         this.listingContainerView.setActiveListing(id);
         this.map.zoomToMarker(id);
         this.map.showInfoBox(id);
+    },
+
+    // Delegate behavior to views based on the click of a listing
+    clickListing: function(id) {
+        this.$container_welcome.fadeOut();
+        this.listingContainerView.setActiveListing(id);
+        this.map.zoomToMarker(id);
+        this.map.showInfoBox(id);
+
     }
 
 });
