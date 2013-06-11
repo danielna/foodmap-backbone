@@ -542,6 +542,7 @@
     "description": "<h2>Korean BBQ, $20-30+</h2><p>A 24 hour bbq joint that has its busiest hours (no lie) from 12am-4am on weekends.  That's when all the NOVA azns are returning from da klubz, which is why you should avoid honey pig like the plague from 12am-4am.  Otherwise, it's a relatively cheap place to get a variety of meats cooked at your table, if you don't mind the sound of really loud and really bad Korean techno.</p><p>It tends to appeal to a younger crowd and the meat quality isn't the greatest here, but it's still the most economical way to eat Korean BBQ that I know of (aside from cooking it yourself).  The greens and sesame oil salad that they give you with the meat is great.  Lots of alcohol here, if you're into that type of thing.  It's probably going to cost around $25-$30 to eat enough meat to be full, but you should be seriously full.</p><p>The Centreville and Annandale locations are pretty much equivalent in every way.</p>",
     "price": "high",
     "ethnicity": "Korean",
+    "tags": "Meat, BestOf",
     "coordinates": 
         {
             "lng":  "-77.194122",
@@ -553,6 +554,7 @@
     "description": "<h2>Peking Duck/Chinese, $45</h2><p>The duck here is famous and for good reason, as it is excellent.  It's also overpriced like nobody's business.  $45 for a single duck.  This place is popularized by the presence of hundreds of photos of politicians and dignitaries on the walls, especially George Bush.  Why George Bush's preference for eating at your restaurant is a positive endorsement is beyond me.  Despite my inability to get over my political leanings when writing restaurant reviews, the food here is definitely good.  Going without a reservation is pointless during prime times.  The odd-hour \"lunch for x\" deals are a better bang for the buck.</p>",
     "price": "high",
     "ethnicity": "Chinese",
+    "tags": "Duck",
     "coordinates": 
         {
             "lng":  "-77.139603",

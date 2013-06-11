@@ -13,6 +13,7 @@ foodmap.MapItemList = Backbone.Collection.extend({
 
     // Return unique tags for the collection as an array
     tags: function() {
+        console.log("what:", _.uniq(this.pluckCollectionProperty("tags")));
         return _.uniq(this.pluckCollectionProperty("tags"));
     },
 
@@ -23,17 +24,19 @@ foodmap.MapItemList = Backbone.Collection.extend({
 
     // Pluck a collection property, returning an array of properties that do not include empty strings
     pluckCollectionProperty: function(property) {
-        var properties = _(this.pluck(property)).map(function(s){
+        var properties = _.chain(this.pluck(property)).map(function(s){
             return s.split(",");
         });
 
-        var flattened = _.chain(properties).flatten().map(function(s){
+        var flattened = properties.flatten().map(function(s){
             return s.trim();
         });
 
-        return _.filter(flattened, function(s) {
+        var filtered = flattened.filter(function(s) {
             return s !== "";
         });
+
+        return filtered.value();
     },
 
     // Sort by original insertion order
