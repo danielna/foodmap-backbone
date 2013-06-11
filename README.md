@@ -1,4 +1,6 @@
 foodmap-backbone
 ================
 
-Backbone-izing the foodmap
+Refactoring the foodmap.
+
+Currently using backbone.js for Javascript MVC and RequireJS for dependency management.
