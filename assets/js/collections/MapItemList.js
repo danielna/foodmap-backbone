@@ -11,23 +11,6 @@ foodmap.MapItemList = Backbone.Collection.extend({
         // console.log("collection init");
     },
 
-    // Filter by price
-    list_cost_low: function() {
-        return this.filter(function(mapItem){
-            return mapItem.get("price") === "low";
-        });
-    },
-    list_cost_med: function() {
-        return this.filter(function(mapItem){
-            return mapItem.get("price") === "med";
-        });
-    },
-    list_cost_high: function() {
-        return this.filter(function(mapItem){
-            return mapItem.get("price") === "high";
-        });
-    },
-
     // Return unique tags for the collection as an array
     tags: function() {
         return _.uniq(this.pluckCollectionProperty("tags"));
