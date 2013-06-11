@@ -1,46 +1,53 @@
 
-var foodmap = foodmap || {};
+define(["jquery", "backbone", "models/MapItem"],
+    function($, Backbone, MapItem) {
 
-foodmap.MapItemList = Backbone.Collection.extend({
+        var foodmap = foodmap || {};
 
-    model: foodmap.MapItem,
+        foodmap.MapItemList = Backbone.Collection.extend({
 
-    url: "/assets/resources/eateries.json",
+            model: MapItem,
 
-    initialize: function() {
-        // console.log("collection init");
-    },
+            url: "/assets/resources/eateries.json",
 
-    // Return unique tags for the collection as an array
-    tags: function() {
-        console.log("what:", _.uniq(this.pluckCollectionProperty("tags")));
-        return _.uniq(this.pluckCollectionProperty("tags"));
-    },
+            initialize: function() {
+                // console.log("collection init");
+            },
 
-    // Return unique ethnicities for the collection as an array
-    ethnicities: function() {
-        return _.uniq(this.pluckCollectionProperty("ethnicity"));
-    },
+            // Return unique tags for the collection as an array
+            tags: function() {
+                return _.uniq(this.pluckCollectionProperty("tags"));
+            },
 
-    // Pluck a collection property, returning an array of properties that do not include empty strings
-    pluckCollectionProperty: function(property) {
-        var properties = _.chain(this.pluck(property)).map(function(s){
-            return s.split(",");
+            // Return unique ethnicities for the collection as an array
+            ethnicities: function() {
+                return _.uniq(this.pluckCollectionProperty("ethnicity"));
+            },
+
+            // Pluck a collection property, returning an array of properties that do not include empty strings
+            pluckCollectionProperty: function(property) {
+                var properties = _.chain(this.pluck(property)).map(function(s){
+                    return s.split(",");
+                });
+
+                var flattened = properties.flatten().map(function(s){
+                    return s.trim();
+                });
+
+                var filtered = flattened.filter(function(s) {
+                    return s !== "";
+                });
+
+                return filtered.value();
+            },
+
+            // Sort by original insertion order
+            comparator: function( mapItem ) {
+                return mapItem.get("order");
+            }
         });
 
-        var flattened = properties.flatten().map(function(s){
-            return s.trim();
-        });
+    return foodmap.MapItemList;
 
-        var filtered = flattened.filter(function(s) {
-            return s !== "";
-        });
-
-        return filtered.value();
-    },
-
-    // Sort by original insertion order
-    comparator: function( mapItem ) {
-        return mapItem.get("order");
     }
-});
+);

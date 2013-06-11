@@ -1,19 +1,28 @@
 
-var foodmap = foodmap || {};
+define(["jquery", "backbone", "foodmap.globals"],
+    
+    function($, Backbone, _globals) {
 
-foodmap.ListingView = Backbone.View.extend({
+        var foodmap = foodmap || {};
 
-    tagName: 'div',
-    className: "listing",
+        foodmap.ListingView = Backbone.View.extend({
 
-    template: _.template( $("#template-listing").html() ),
+            tagName: 'div',
+            className: "listing",
 
-    render: function() {
-        this.model.attributes.price_map = foodmap._globals.price_map[this.model.get("price")];
-        this.$el.html( this.template( this.model.toJSON() ));
-        this.$el.attr("data-id", this.model.get("name"));
+            template: _.template( $("#template-listing").html() ),
 
-        return this;
+            render: function() {
+                this.model.attributes.price_map = _globals.price_map[this.model.get("price")];
+                this.$el.html( this.template( this.model.toJSON() ));
+                this.$el.attr("data-id", this.model.get("name"));
+
+                return this;
+            }
+
+        });
+
+    return foodmap.ListingView;
+    
     }
-
-});
+);

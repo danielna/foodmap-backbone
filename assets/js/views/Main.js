@@ -1,87 +1,96 @@
 
-var foodmap = foodmap || {};
-
-foodmap.Main = Backbone.View.extend({
-
-    el: "body",
-
-    events: {
-        "click #js-btn-welcome": "toggleWelcome",
-        "click #js-close-welcome": "toggleWelcome",
-        "click #js-btn-reset": "onReset",
-        "click #js-btn-menu": "toggleLeftMenu"
-    },
+define(["jquery", "backbone", "collections/MapItemList", "views/ListingContainerView", "views/TagsView", "views/MapView", "foodmap.globals"],
     
-    initialize: function() {
-        this.$container_welcome = foodmap._globals.container_welcome;
-        this.$tags = this.$(".tags .tag");
-        this.$body = this.$el;
+    function($, Backbone, MapItemList, ListingContainerView, TagsView, MapView, _globals) {
 
-        foodmap.MapList = new foodmap.MapItemList();
-        this.listingContainerView = new foodmap.ListingContainerView({ collection: foodmap.MapList }),
-        this.tagsView = new foodmap.TagsView({ collection: foodmap.MapList }),
-        this.map = new foodmap.MapView({ collection: foodmap.MapList });
+        var foodmap = foodmap || {};
 
-        this.listenTo(this.map, "clickMapMarker", this.clickMapMarker);
-        this.listenTo(this.listingContainerView, "clickListing", this.clickListing);
-        this.listenTo(this.tagsView, "clickTag", this.clickTag);
+        foodmap.Main = Backbone.View.extend({
 
-        foodmap.MapList.fetch({reset: true});
-    },
+            el: "body",
 
-    toggleWelcome: function() {
-        this.$container_welcome.fadeToggle();
-    },
+            events: {
+                "click #js-btn-welcome": "toggleWelcome",
+                "click #js-close-welcome": "toggleWelcome",
+                "click #js-btn-reset": "onReset",
+                "click #js-btn-menu": "toggleLeftMenu"
+            },
+            
+            initialize: function() {
+                this.$container_welcome = _globals.container_welcome;
+                this.$tags = this.$(".tags .tag");
+                this.$body = this.$el;
 
-    resetActiveTag: function() {
-        this.$tags.removeClass("active");
-    },
+                foodmap.MapList = new MapItemList();
+                this.listingContainerView = new ListingContainerView({ collection: foodmap.MapList }),
+                this.tagsView = new TagsView({ collection: foodmap.MapList }),
+                this.map = new MapView({ collection: foodmap.MapList });
 
-    onReset: function() {
-        this.$container_welcome.fadeIn();
-        this.resetActiveTag();
-        this.map.resetZoom();
-        this.map.setMarkersVisible();
-        this.listingContainerView.resetListings();
+                this.listenTo(this.map, "clickMapMarker", this.clickMapMarker);
+                this.listenTo(this.listingContainerView, "clickListing", this.clickListing);
+                this.listenTo(this.tagsView, "clickTag", this.clickTag);
 
-    },
+                foodmap.MapList.fetch({reset: true});
+            },
 
-    toggleLeftMenu: function(event) {
-        var $this = $(event.currentTarget);
+            toggleWelcome: function() {
+                this.$container_welcome.fadeToggle();
+            },
 
-        this.$container_welcome.fadeOut();
-        this.$el.toggleClass("menu-left");
-        
-        if (this.$el.hasClass("menu-left")){
-            $this.html("&raquo; Hide");
-        } else {
-            $this.html("&laquo; Show");
-        }
-    },
+            resetActiveTag: function() {
+                this.$tags.removeClass("active");
+            },
 
-    // Delegate behavior to views based on the click of a map marker
-    clickMapMarker: function(id){
-        this.$container_welcome.fadeOut();
+            onReset: function() {
+                this.$container_welcome.fadeIn();
+                this.resetActiveTag();
+                this.map.resetZoom();
+                this.map.setMarkersVisible();
+                this.listingContainerView.resetListings();
 
-        if (!this.$body.hasClass("menu-on")) {
-            this.$body.addClass("menu-on");
-        }
-        this.listingContainerView.setActiveListing(id);
-        this.map.zoomToMarker(id);
-        this.map.showInfoBox(id);
-    },
+            },
 
-    // Delegate behavior to views based on the click of a listing
-    clickListing: function(id) {
-        this.$container_welcome.fadeOut();
-        this.listingContainerView.setActiveListing(id);
-        this.map.zoomToMarker(id);
-        this.map.showInfoBox(id);
-    },
+            toggleLeftMenu: function(event) {
+                var $this = $(event.currentTarget);
 
-    clickTag: function(id) {
-        var active_markers = this.map.filterMarkersByTag(id);
-        this.listingContainerView.filterListingsByArray(active_markers);
+                this.$container_welcome.fadeOut();
+                this.$el.toggleClass("menu-left");
+                
+                if (this.$el.hasClass("menu-left")){
+                    $this.html("&raquo; Hide");
+                } else {
+                    $this.html("&laquo; Show");
+                }
+            },
+
+            // Delegate behavior to views based on the click of a map marker
+            clickMapMarker: function(id){
+                this.$container_welcome.fadeOut();
+
+                if (!this.$body.hasClass("menu-on")) {
+                    this.$body.addClass("menu-on");
+                }
+                this.listingContainerView.setActiveListing(id);
+                this.map.zoomToMarker(id);
+                this.map.showInfoBox(id);
+            },
+
+            // Delegate behavior to views based on the click of a listing
+            clickListing: function(id) {
+                this.$container_welcome.fadeOut();
+                this.listingContainerView.setActiveListing(id);
+                this.map.zoomToMarker(id);
+                this.map.showInfoBox(id);
+            },
+
+            clickTag: function(id) {
+                var active_markers = this.map.filterMarkersByTag(id);
+                this.listingContainerView.filterListingsByArray(active_markers);
+            }
+
+        });
+
+    return foodmap.Main;
+
     }
-
-});
+);

@@ -1,15 +1,23 @@
 
-var foodmap = foodmap || {};
+define(["jquery", "backbone"],
 
-foodmap.MapItem = Backbone.Model.extend({
+    function($, Backbone) {
 
-    defaults: {
-        "name": "Default MapItem",
-        "description": "",
-        "price": "",
-        "ethnicity": "",
-        "tags": "",
-        "coordinates": ""
+        var foodmap = foodmap || {};
+
+        foodmap.MapItem = Backbone.Model.extend({
+
+            defaults: {
+                "name": "Default MapItem",
+                "description": "",
+                "price": "",
+                "ethnicity": "",
+                "tags": "",
+                "coordinates": ""
+            }
+
+        });
+
+        return foodmap.MapItem;
     }
-
-});
+);
