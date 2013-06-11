@@ -23,17 +23,17 @@ foodmap.MapItemList = Backbone.Collection.extend({
 
     // Pluck a collection property, returning an array of properties that do not include empty strings
     pluckCollectionProperty: function(property) {
-        var properties = [];
-         _(this.pluck(property)).each(function(tag) {
-            var temp = tag.split(",");
-            for ( var i=0; i < temp.length; i++ ){
-                if ( temp[i] !== "" ) {
-                    properties.push(temp[i].trim());
-                }
-            }
+        var properties = _(this.pluck(property)).map(function(s){
+            return s.split(",");
         });
 
-        return properties;
+        var flattened = _.chain(properties).flatten().map(function(s){
+            return s.trim();
+        });
+
+        return _.filter(flattened, function(s) {
+            return s !== "";
+        });
     },
 
     // Sort by original insertion order
