@@ -16,6 +16,8 @@ define(["jquery", "backbone", "foodmap.globals", "views/ListingView"],
             initialize: function() {
                 this.collection.bind("reset", _.bind(this.render, this));
                 this.collection.bind("reset", _.bind(this.setListingContainerWidth, this));  
+
+                this.isAnimating = false;
             },
 
             render: function() {
@@ -50,12 +52,23 @@ define(["jquery", "backbone", "foodmap.globals", "views/ListingView"],
             },
 
             setActiveListing: function(id) {
-                var $active_listing = this.$el.find("[data-id=\"" + id + "\"]");
+                var $active_listing = this.$el.find("[data-id=\"" + id + "\"]"),
+                    $listing_scroll = $("#bottom-container .listing-scroll"),
+                    _this = this;
+
                 this.$el.find(".listing").removeClass("active");
                 $active_listing.addClass("active");
 
-                // Todo: Override this animation on a new click
-                $("#bottom-container .listing-scroll").animate({scrollLeft: $active_listing[0].offsetLeft - ($(window).width()/2)}, 1200);
+                // If it's currently animating, stop the animation.
+                if ( this.isAnimating ){
+                    $listing_scroll.stop();
+                }
+
+                this.isAnimating = true;
+                
+                $listing_scroll.animate({scrollLeft: $active_listing[0].offsetLeft - ($(window).width()/2)}, 1200, function() {
+                    _this.isAnimating = false;
+                });
             },
 
             clickListing: function(event) {
