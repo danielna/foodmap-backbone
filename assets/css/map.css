@@ -268,7 +268,7 @@ body.menu-left #container-map {
 /* line 247, ../sass/map.scss */
 #container-map .infobox-container {
   display: block;
-  font-size: 0.875em;
+  font-size: 14px;
   line-height: 1.3em;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.9);
